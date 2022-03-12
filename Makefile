@@ -3,4 +3,4 @@ all:
 	cd src/kernel; make; bash build.sh; mv Omega.iso ../../
 
 reset:
-	cd src/bootloader; rm -rf limine; make clean
+	cd src/kernel; rm -rf limine; make clean
