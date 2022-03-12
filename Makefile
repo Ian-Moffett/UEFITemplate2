@@ -1,13 +1,15 @@
 all:
-	cd kernel/; rm -rf limine 2> /dev/null; make clean; make; mv src/*.o src/*.d ./
+	cd kernel/; rm -rf limine 2> /dev/null; make clean; bash buildall.sh
 	cd kernel/; bash build.sh; mv Omega.iso ../
-
-start:
 	git clone https://github.com/limine-bootloader/limine.git --branch=v2.0-branch-binary --depth=1 kernel/limine
-	make
+	@ rm $$(find ./ -type f -name "*.d")
+	@ rm $$(find ./ -type f -name "*.o")
 
 reset:
-	cd kernel; rm -rf limine; make clean; rm *.o *.d
+	cd kernel/; make clean; rm -rf limine
+	@ rm $$(find ./ -type f -name "*.d")
+	@ rm $$(find ./ -type f -name "*.o")
+
 
 
 run:
